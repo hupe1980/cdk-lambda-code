@@ -98,7 +98,7 @@ export class LambdaCode {
    */
   public static fromFileAsInline(path: string): InlineCode {
     if(!fs.pathExistsSync(path)) {
-      throw new Error(`No file found for path ${path}`):
+      throw new Error(`No file found for path ${path}`);
     }
 
     const code = fs.readFileSync(path, { encoding: 'uft8' });

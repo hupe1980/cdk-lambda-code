@@ -12,7 +12,7 @@ it('should throw an exception if there is no package.json for specified namespac
         loadLambdaConfig(namespace, key, nested);
     }
 
-    expect(test).toThrowError(`No config found for namespace ${namespace}`)
+    expect(test).toThrowError(`No config found for namespace ${namespace}`);
 });
 
 it('should throw an exception if there is no entry for a specified key', () => {
