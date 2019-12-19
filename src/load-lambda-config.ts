@@ -1,6 +1,6 @@
 import path from 'path';
 import pkgConf from 'pkg-conf';
-import callerPath from 'caller-path';
+import parentModule from 'parent-module';
 import isEmpty from 'lodash.isempty';
 
 export interface LambdaConfig {
@@ -22,7 +22,8 @@ export const loadLambdaConfig = (
   key: string,
   cwd?: string
 ): LambdaConfig => {
-  const startDir = cwd || path.dirname(callerPath() as string);
+  const startDir = cwd || path.dirname(parentModule() as string);
+  
   const config = pkgConf.sync(namespace, {
     cwd: startDir
   }) as Record<string, LambdaConfig>;
