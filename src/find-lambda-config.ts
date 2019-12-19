@@ -1,6 +1,5 @@
 import path from 'path';
 import pkgConf from 'pkg-conf';
-import parentModule from 'parent-module';
 import isEmpty from 'lodash.isempty';
 
 export interface LambdaConfig {
@@ -17,20 +16,18 @@ export interface LambdaConfig {
   assetRoot: string;
 }
 
-export const loadLambdaConfig = (
+export const findLambdaConfig = (
   namespace: string,
   key: string,
-  cwd?: string
+  cwd: string
 ): LambdaConfig => {
-  const startDir = cwd || path.dirname(parentModule() as string);
-  
   const config = pkgConf.sync(namespace, {
-    cwd: startDir
+    cwd
   }) as Record<string, LambdaConfig>;
 
   if (isEmpty(config)) {
     throw new Error(
-      `No config found for namespace ${namespace} and start directory ${startDir}`
+      `No config found for namespace ${namespace}`
     );
   }
 

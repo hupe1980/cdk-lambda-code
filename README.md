@@ -38,7 +38,10 @@ yarn add cdk-lambda-code
 import { LambdaCode } from 'cdk-lambda-code';
 
 new Function(this, 'LambdaFunction', {
-  ...LambdaCode.fromPackageJson('lambdaHandler', { mockInTestMode: true })
+  ...LambdaCode.fromPackageJson('lambdaHandler', {
+    cwd: __dirname,
+    mockInTestMode: true
+  })
 });
 ```
 

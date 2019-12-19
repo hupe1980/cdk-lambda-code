@@ -1,19 +1,19 @@
 import path from 'path';
-import { loadLambdaConfig } from '../src/load-lambda-config';
+import { findLambdaConfig } from '../src/find-lambda-config';
 
 const root = path.join(__dirname, 'fixture', 'root');
-const nested = path.join(root, 'node_modules', 'nested');
+const nested = path.join(root, 'nested');
 
 it('should throw an exception if there is no package.json for specified namespace', () => {
     const namespace = 'NOT_AVAILABLE';
     const key = 'foo';
 
     const test = (): void => {
-        loadLambdaConfig(namespace, key, nested);
+        findLambdaConfig(namespace, key, nested);
     }
 
     expect(test).toThrowError(
-      `No config found for namespace ${namespace} and start directory ${nested}`
+      `No config found for namespace ${namespace}`
     );
 });
 
@@ -22,7 +22,7 @@ it('should throw an exception if there is no entry for a specified key', () => {
   const key = 'NOT_AVAILABLE';
 
   const test = (): void => {
-    loadLambdaConfig(namespace, key, nested);
+    findLambdaConfig(namespace, key, nested);
   };
 
   expect(test).toThrowError(

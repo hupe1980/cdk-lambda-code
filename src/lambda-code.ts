@@ -12,12 +12,12 @@ import {
 import { AssetOptions } from '@aws-cdk/aws-s3-assets';
 import { IBucket } from '@aws-cdk/aws-s3';
 
-import { loadLambdaConfig } from './load-lambda-config';
+import { findLambdaConfig } from './find-lambda-config';
 
 export interface Options {
   namespace?: string;
   mockInTestMode?: boolean;
-  cwd?: string;
+  cwd: string;
 }
 
 export interface LambdaConfig {
@@ -40,7 +40,7 @@ export class LambdaCode {
    * @returns `code`, `handler` and `runtime`.
    * @param key The key in the package.json namespace
    */
-  public static fromPackageJson(key: string, options?: Options): {
+  public static fromPackageJson(key: string, options: Options): {
     code: AssetCode | InlineCode;
     runtime: Runtime;
     handler: string;
@@ -51,7 +51,7 @@ export class LambdaCode {
       ...options
     };
 
-    const lambdaConfig = loadLambdaConfig(namespace, key, cwd);
+    const lambdaConfig = findLambdaConfig(namespace, key, cwd);
 
     const lambdaAsset = path.join(
       lambdaConfig.assetRoot,
