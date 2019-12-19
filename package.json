@@ -1,0 +1,57 @@
+{
+  "name": "cdk-lambda-code",
+  "description": "Wrapper arroud @aws-cdk/aws-lambda Code to support mocking in test mode and configuration wtih package.json namespaces",
+  "version": "0.1.0",
+  "license": "MIT",
+  "keywords": [
+    "aws cdk",
+    "cdk",
+    "lambda"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hupe1980/cdk-lambda-code.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hupe1980/cdk-lambda-code/issues"
+  },
+  "homepage": "https://github.com/hupe1980/cdk-lambda-code#readme",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "rimraf lib && tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "lint": "eslint '*/**/*.{ts,tsx}' --report-unused-disable-directives",
+    "prepublishOnly": "npm run test && npm run build"
+  },
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "lodash.isempty": "^4.4.0",
+    "pkg-conf": "^3.1.0"
+  },
+  "peerDependencies": {
+    "@aws-cdk/aws-lambda": "^1.0.0",
+    "@aws-cdk/aws-s3": "^1.0.0",
+    "@aws-cdk/aws-s3-assets": "^1.0.0"
+  },
+  "devDependencies": {
+    "@aws-cdk/aws-lambda": "^1.19.0",
+    "@aws-cdk/aws-s3": "^1.19.0",
+    "@aws-cdk/aws-s3-assets": "^1.19.0",
+    "@types/fs-extra": "^8.0.1",
+    "@types/jest": "^24.0.21",
+    "@types/lodash.isempty": "^4.4.6",
+    "@types/node": "^12.12.5",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "eslint": "^6.6.0",
+    "jest": "^24.9.0",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.7.2"
+  }
+}
