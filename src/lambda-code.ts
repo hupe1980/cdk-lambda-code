@@ -50,7 +50,7 @@ export class LambdaCode {
       ...options
     };
 
-    const cwd = __dirname;
+    const cwd = process.cwd();
 
     const lambdaConfig = loadLambdaConfig(namespace, key, cwd);
 
