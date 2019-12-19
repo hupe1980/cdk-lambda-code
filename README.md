@@ -27,7 +27,7 @@ yarn add cdk-lambda-code
     "lambdaHandler": {
       "runtime": "nodejs10.x",
       "handler": "lib/index.handler",
-      "artifact": "bundle.zip"
+      "artifact": "lambda/bundle.zip"
     }
   }
 }
@@ -52,7 +52,7 @@ new Function(this, 'LambdaFunction', {
 import { LambdaCode } from 'cdk-lambda-code';
 
 new Function(this, 'LambdaFunction', {
-  ...LambdaCode.fromFileAsInline(path.join(__dirname, '..', 'handler.js'))
+  code: LambdaCode.fromFileAsInline(path.join(__dirname, '..', 'handler.js'))
   runtime: Runtime.NODEJS_10_X,
   handler: 'index.handler'
 });
