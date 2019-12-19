@@ -17,6 +17,7 @@ import { loadLambdaConfig } from './load-lambda-config';
 export interface Options {
   namespace?: string;
   mockInTestMode?: boolean;
+  cwd?: string;
 }
 
 export interface LambdaConfig {
@@ -44,13 +45,12 @@ export class LambdaCode {
     runtime: Runtime;
     handler: string;
   } {
-    const { namespace, mockInTestMode } = {
+    const { namespace, mockInTestMode, cwd } = {
       namespace: 'lambdaDependencies',
       mockInTestMode: false,
+      cwd: process.cwd(),
       ...options
     };
-
-    const cwd = process.cwd();
 
     const lambdaConfig = loadLambdaConfig(namespace, key, cwd);
 
