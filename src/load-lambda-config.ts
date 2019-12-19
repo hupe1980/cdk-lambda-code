@@ -22,12 +22,15 @@ export const loadLambdaConfig = (
   key: string,
   cwd?: string
 ): LambdaConfig => {
+  const startDir = cwd || path.dirname(callerPath() as string);
   const config = pkgConf.sync(namespace, {
-    cwd: cwd || path.dirname(callerPath() as string)
+    cwd: startDir
   }) as Record<string, LambdaConfig>;
 
   if (isEmpty(config)) {
-    throw new Error(`No config found for namespace ${namespace}`);
+    throw new Error(
+      `No config found for namespace ${namespace} and start directory ${startDir}`
+    );
   }
 
   const filePath = pkgConf.filepath(config) as string;
