@@ -23,7 +23,7 @@ export const loadLambdaConfig = (
   cwd?: string
 ): LambdaConfig => {
   const config = pkgConf.sync(namespace, {
-    cwd: path.dirname(cwd || (callerPath() as string))
+    cwd: cwd || path.dirname(callerPath() as string)
   }) as Record<string, LambdaConfig>;
 
   if (isEmpty(config)) {
