@@ -1,5 +1,6 @@
 import path from 'path';
 import pkgConf from 'pkg-conf';
+import callerPath from 'caller-path';
 import isEmpty from 'lodash.isempty';
 
 export interface LambdaConfig {
@@ -19,9 +20,11 @@ export interface LambdaConfig {
 export const loadLambdaConfig = (
   namespace: string,
   key: string,
-  cwd: string
+  cwd?: string
 ): LambdaConfig => {
-  const config = pkgConf.sync(namespace, { cwd }) as Record<string, LambdaConfig>;
+  const config = pkgConf.sync(namespace, {
+    cwd: cwd || callerPath()
+  }) as Record<string, LambdaConfig>;
 
   if (isEmpty(config)) {
     throw new Error(`No config found for namespace ${namespace}`);

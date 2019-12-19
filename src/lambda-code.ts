@@ -48,7 +48,6 @@ export class LambdaCode {
     const { namespace, mockInTestMode, cwd } = {
       namespace: 'lambdaDependencies',
       mockInTestMode: false,
-      cwd: process.cwd(),
       ...options
     };
 
